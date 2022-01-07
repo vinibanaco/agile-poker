@@ -2,3 +2,6 @@
 . "$(dirname "$0")/_/husky.sh"
 cd api
 npm run pre-commit-lint
+
+cd ../web
+npm run pre-commit-lint
