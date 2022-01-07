@@ -1,0 +1,7 @@
+node_modules
+
+# ignores all files starting with ".env" except the ".env.sample"
+.env*
+!.env.sample
+
+test-coverage

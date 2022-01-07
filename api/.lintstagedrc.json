@@ -1,0 +1,4 @@
+{
+  "*.+(js)": ["npm run lint-staged-files"],
+  "*.+(json|md|yml|yaml)": ["npm run format-staged-files"]
+}
