@@ -12,7 +12,7 @@
     "lint-staged-files": "eslint --fix",
     "format": "prettier --write \"**/*.+(js|jsx|ts|tsx|json|yml|yaml|css|md)\"",
     "format-staged-files": "prettier --write",
-    "prepare": "husky install",
+    "prepare-husky": "cd .. && husky install",
     "pre-commit-lint": "lint-staged"
   },
   "dependencies": {
