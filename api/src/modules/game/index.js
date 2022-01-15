@@ -1,3 +1,7 @@
 'use strict';
 
-module.exports = {};
+const { registerSocketHandlers } = require('./sockets');
+
+module.exports = {
+  registerSocketHandlers,
+};
