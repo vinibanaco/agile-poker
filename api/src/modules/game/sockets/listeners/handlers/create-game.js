@@ -11,9 +11,8 @@ module.exports = (io, socket, socketHandler) => {
 
     const roomInfo = socketHandler.getRoomById(roomId);
     roomInfo.players = roomInfo.sockets.map((info) => {
-      const playerInfo = { ...info, id: info.individualizer };
+      const playerInfo = { ...info };
       delete playerInfo.room;
-      delete playerInfo.individualizer;
       return playerInfo;
     });
     delete roomInfo.sockets;
