@@ -5,10 +5,9 @@ const enums = require('../../enums');
 module.exports = (io, socket, socketHandler) => {
   return (name) => {
     socketHandler.changeSocketName(socket.id, name);
-    const socketInfo = socketHandler.getSocketById(socket.id);
     const roomId = socketHandler.addRoom();
     socketHandler.joinRoom(roomId, socket.id);
-    socketHandler.changeRoomAdmin(roomId, socketInfo.individualizer);
+    socketHandler.changeRoomAdmin(roomId, socket.id);
 
     const roomInfo = socketHandler.getRoomById(roomId);
     roomInfo.players = roomInfo.sockets.map((info) => {
@@ -18,6 +17,9 @@ module.exports = (io, socket, socketHandler) => {
       return playerInfo;
     });
     delete roomInfo.sockets;
-    socket.emit(enums.CHANNELS.EMIT.CREATE_GAME, roomInfo);
+
+    const socketInfo = socketHandler.getSocketById(socket.id);
+
+    socket.emit(enums.CHANNELS.EMIT.CREATE_GAME, roomInfo, socketInfo);
   };
 };

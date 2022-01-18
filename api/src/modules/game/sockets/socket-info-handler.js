@@ -53,8 +53,8 @@ const handler = {
   changeRoomName: (roomId, name = '') => {
     rooms[roomId].name = `${name}`;
   },
-  changeRoomAdmin: (roomId, adminIndividualizer) => {
-    rooms[roomId].admin = adminIndividualizer;
+  changeRoomAdmin: (roomId, socketId) => {
+    rooms[roomId].admin = sockets[socketId].individualizer;
   },
 };
 
