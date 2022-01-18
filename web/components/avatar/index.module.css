@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: hsl(var(--secondary));
+  border-radius: 50%;
+}
