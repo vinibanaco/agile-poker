@@ -1,0 +1,4 @@
+.container {
+  border-radius: 50%;
+  outline: 1px solid hsl(var(--background));
+}
