@@ -7,6 +7,7 @@ module.exports = {
       DISCONNECT: 'disconnect',
     },
     EMIT: {
+      HANDSHAKE: 'handshake',
       CREATE_GAME: 'game:create',
     },
   },

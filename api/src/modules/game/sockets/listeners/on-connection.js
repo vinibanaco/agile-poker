@@ -1,5 +1,8 @@
 'use strict';
 
+const enums = require('../enums');
+
 module.exports = (io, socket, socketHandler) => {
-  socketHandler.newConnection(socket);
+  const { individualizer } = socketHandler.newConnection(socket);
+  socket.emit(enums.CHANNELS.EMIT.HANDSHAKE, individualizer);
 };

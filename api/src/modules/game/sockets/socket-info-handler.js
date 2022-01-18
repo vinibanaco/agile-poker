@@ -17,6 +17,7 @@ const handler = {
       room: null,
       socket,
     };
+    return sockets[socket.id];
   },
   getSocketById: (socketId) => {
     const { individualizer, name, room, hasVoted } = sockets[socketId];
