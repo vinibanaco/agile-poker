@@ -1,0 +1,34 @@
+.container {
+  width: 46px;
+  height: 42px;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  width: 100%;
+  height: 100%;
+}
+
+.button[disabled] {
+  cursor: not-allowed;
+}
+
+.icon {
+  font-size: 22px;
+}
+
+.icon.animated {
+  animation: spin 1.8s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
