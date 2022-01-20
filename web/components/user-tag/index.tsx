@@ -7,26 +7,29 @@ import styles from './index.module.css';
 
 type Props = {
   name: string;
-  size?: 'normal' | 'small';
+  size?: 'medium' | 'small';
   voteStatus?: VoteStatusTypes | false;
 };
 
-export default function UserTag({ name, size = 'normal', voteStatus = false }: Props) {
+export default function UserTag({ name, size = 'medium', voteStatus = false }: Props) {
+  // TODO: increase size of everything
+  const fontSize = size === 'medium' ? '14px' : '12px';
+
   return (
     <HStack align="center">
       <div
         className={styles.avatarWrapper}
-        style={{ marginRight: size === 'normal' ? '12px' : '8px' }}
+        style={{ marginRight: size === 'medium' ? '12px' : '8px' }}
       >
-        <Avatar userName={name} />
+        <Avatar userName={name} size={size} />
         {voteStatus ? (
           <div className={styles.voteStatusWrapper}>
-            <VoteStatus status={voteStatus} />
+            <VoteStatus status={voteStatus} size={size} />
           </div>
         ) : null}
       </div>
 
-      <span>{name}</span>
+      <span style={{ fontSize }}>{name}</span>
     </HStack>
   );
 }
