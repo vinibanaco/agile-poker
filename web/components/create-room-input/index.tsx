@@ -7,11 +7,12 @@ type Props = {
   id: string;
   value: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  buttonDisabled: boolean;
   loading: boolean;
 };
 
-export default function CreateRoomInput({ id, value, onChange, loading }: Props) {
-  const disabled = !value;
+export default function CreateRoomInput({ id, value, onChange, loading, buttonDisabled }: Props) {
+  const disabled = !value || buttonDisabled;
 
   return (
     <div className={`${styles.container} ${loading ? styles.loading : ''}`}>
