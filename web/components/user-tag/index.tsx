@@ -6,18 +6,19 @@ import VoteStatus from '../vote-status';
 import styles from './index.module.css';
 
 type Props = {
+  name: string;
   size?: 'normal' | 'small';
   voteStatus?: VoteStatusTypes | false;
 };
 
-export default function UserTag({ size = 'normal', voteStatus = false }: Props) {
+export default function UserTag({ name, size = 'normal', voteStatus = false }: Props) {
   return (
-    <HStack>
+    <HStack align="center">
       <div
         className={styles.avatarWrapper}
         style={{ marginRight: size === 'normal' ? '12px' : '8px' }}
       >
-        <Avatar />
+        <Avatar userName={name} />
         {voteStatus ? (
           <div className={styles.voteStatusWrapper}>
             <VoteStatus status={voteStatus} />
@@ -25,7 +26,7 @@ export default function UserTag({ size = 'normal', voteStatus = false }: Props) 
         ) : null}
       </div>
 
-      <span>João Baltazar</span>
+      <span>{name}</span>
     </HStack>
   );
 }
