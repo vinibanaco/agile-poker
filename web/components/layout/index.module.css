@@ -5,3 +5,11 @@
   background-color: hsl(var(--background));
   color: hsl(var(--white));
 }
+
+.wrapper {
+  width: 100%;
+  height: calc(100% - var(--header-height));
+  max-width: var(--max-width);
+
+  margin: 0 auto;
+}

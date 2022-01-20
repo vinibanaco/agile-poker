@@ -2,6 +2,17 @@ import type { ReactNode } from 'react';
 
 import styles from './index.module.css';
 
-export default function Layout({ children }: { children: ReactNode }) {
-  return <div className={styles.container}>{children}</div>;
+type Props = {
+  header: ReactNode;
+  children: ReactNode;
+};
+
+export default function Layout({ header, children }: Props) {
+  return (
+    <div className={styles.container}>
+      {header}
+
+      <div className={styles.wrapper}>{children}</div>
+    </div>
+  );
 }

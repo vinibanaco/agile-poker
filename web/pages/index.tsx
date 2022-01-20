@@ -46,7 +46,7 @@ const Home: NextPage = () => {
   };
 
   return (
-    <Layout>
+    <Layout header={<Header />}>
       <Head>
         <title>Scrum Voting</title>
         <meta
@@ -54,8 +54,6 @@ const Home: NextPage = () => {
           content="The easiest way for you and your team to vote user stories"
         />
       </Head>
-
-      <Header />
 
       <main className={styles.content}>
         <form onSubmit={handleSubmit} style={{ display: 'inline-block' }}>
