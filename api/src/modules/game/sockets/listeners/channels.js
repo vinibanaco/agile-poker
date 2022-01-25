@@ -3,6 +3,7 @@
 const socketInfoHandler = require('../socket-info-handler');
 const {
   setupCreateGameHandler,
+  setupJoinGameHandler,
   setupDisconnectionHandler,
   setupDisconnectingHandler,
 } = require('./handlers');
@@ -15,6 +16,8 @@ module.exports = (io, socket) => {
     enums.CHANNELS.LISTEN.CREATE_GAME,
     setupCreateGameHandler(io, socket, socketInfoHandler),
   );
+
+  socket.on(enums.CHANNELS.LISTEN.JOIN, setupJoinGameHandler(io, socket, socketInfoHandler));
 
   socket.on(
     enums.CHANNELS.LISTEN.DISCONNECTING,

@@ -41,7 +41,21 @@ const handler = {
     return roomId;
   },
   getRoomById: (roomId) => {
-    return rooms[roomId];
+    if (rooms[roomId]) {
+      return JSON.parse(JSON.stringify(rooms[roomId]));
+    }
+    return null;
+  },
+  getRoomByIdUserFriendly: (roomId) => {
+    const roomInfo = handler.getRoomById(roomId);
+    roomInfo.players = roomInfo.sockets.map((info) => {
+      const playerInfo = { ...info };
+      delete playerInfo.room;
+      return playerInfo;
+    });
+    delete roomInfo.sockets;
+
+    return roomInfo;
   },
   joinRoom: (roomId, socketId) => {
     sockets[socketId].room = roomId;
@@ -55,7 +69,7 @@ const handler = {
     leaveRoomLock = new Promise((resolve) => {
       const { individualizer, room: roomId } = sockets[socketId];
 
-      const newArray = rooms[roomId].players.filter(
+      const newArray = rooms[roomId].sockets.filter(
         (socketInfo) => socketInfo.individualizer !== individualizer,
       );
       if (newArray.length === 0) {
