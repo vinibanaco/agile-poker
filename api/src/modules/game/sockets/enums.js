@@ -10,7 +10,7 @@ module.exports = {
     EMIT: {
       HANDSHAKE: 'handshake',
       CREATE_GAME: 'game:create',
-      USER_LEFT: 'user:left',
+      USER_LEFT: 'game:player_left',
     },
   },
 };
