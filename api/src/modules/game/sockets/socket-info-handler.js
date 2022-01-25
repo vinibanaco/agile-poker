@@ -7,6 +7,7 @@ const { v4: uuidv4 } = require('uuid');
 const sockets = {};
 const rooms = {};
 
+let leaveRoomLock = null;
 // TODO: error handling
 const handler = {
   newConnection: (socket) => {
@@ -46,6 +47,24 @@ const handler = {
     sockets[socketId].room = roomId;
     sockets[socketId].socket.join(roomId);
     rooms[roomId].sockets.push(handler.getSocketById(socketId));
+  },
+  leaveRoom: async (socketId) => {
+    if (leaveRoomLock) {
+      await leaveRoomLock;
+    }
+    leaveRoomLock = new Promise((resolve) => {
+      const { individualizer, room: roomId } = sockets[socketId];
+
+      const newArray = rooms[roomId].players.filter(
+        (socketInfo) => socketInfo.individualizer !== individualizer,
+      );
+      if (newArray.length === 0) {
+        delete rooms[roomId];
+      } else {
+        rooms[roomId].sockets = newArray;
+      }
+      resolve();
+    });
   },
   getRoomMembers: (roomId) => {
     return rooms[roomId].sockets;
